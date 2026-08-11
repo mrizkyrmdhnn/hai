@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Maafin Aku Ya, Sayang ❤️</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Floating Hearts -->
+    <canvas id="bg-canvas"></canvas>
+    <!-- Canvas for Fireworks & Confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Music Control Float Button -->
+    <button id="music-toggle" class="music-btn" aria-label="Toggle Audio">
+        <span id="music-icon">🎵</span>
+    </button>
+
+    <!-- Main Container Card -->
+    <main class="mobile-container">
+        <!-- SCREEN 1: APOLOGY VIEW -->
+        <section id="apology-view" class="card-screen active">
+            <div class="header-badge">
+                <span class="sparkle">✨</span> Untuk Orang Tersayang <span class="sparkle">✨</span>
+            </div>
+
+            <!-- Heart Photo Frame Container -->
+            <div class="heart-frame-wrapper">
+                <div class="heart-pulse-aura"></div>
+                <div class="heart-frame">
+                    <svg class="heart-clip-svg" viewBox="0 0 100 100">
+                        <defs>
+                            <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+                                <path d="M 0.5,0.28 C 0.5,0.28 0.40,0.05 0.22,0.05 C 0.08,0.05 0,0.18 0,0.36 C 0,0.61 0.26,0.78 0.5,0.96 C 0.74,0.78 1,0.61 1,0.36 C 1,0.18 0.92,0.05 0.78,0.05 C 0.60,0.05 0.5,0.28 0.5,0.28 Z"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+
+                    <!-- Photo Slideshow Inside Heart Shape -->
+                    <div class="heart-photo-slideshow">
+                        <img id="img-photo1" src="image/photo1.jpg" alt="Foto Kenangan 1" class="heart-photo active">
+                        <img id="img-photo2" src="image/photo2.jpg" alt="Foto Kenangan 2" class="heart-photo">
+                        <img id="img-photo3" src="image/photo3.jpg" alt="Foto Kenangan 3" class="heart-photo">
+                        <img id="img-photo4" src="image/photo4.jpg" alt="Foto Kenangan 4" class="heart-photo">
+                    </div>
+                    
+                    <!-- Decorative Heart Overlay Border -->
+                    <div class="heart-border-glow"></div>
+                </div>
+
+                <!-- Slideshow Navigation Dots -->
+                <div class="photo-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                </div>
+            </div>
+
+            <!-- Apology Message Content -->
+            <div class="message-box">
+                <h1 class="main-title">Maafin Aku Ya, Sayang... 🥺❤️</h1>
+                <p class="apology-text">
+                    Aku tau aku udah bikin kamu kesal dan kecewa... Dari lubuk hatiku yang paling dalam, aku minta maaf ya sayang. Tanpa kamu, hariku terasa sepi dan kurang berwarna... 🌸✨
+                </p>
+                <p class="apology-subtext">
+                    Kamu mau kan maafin aku hari ini? 🥺👉👈
+                </p>
+            </div>
+
+            <!-- Interactive Choice Buttons -->
+            <div class="button-area" id="button-container">
+                <button id="btn-yes" class="btn btn-primary">
+                    <span class="btn-text">Iya, Dimaafkan ❤️</span>
+                    <span class="btn-glow"></span>
+                </button>
+                
+                <button id="btn-no" class="btn btn-secondary">
+                    <span class="btn-text" id="no-text">Nggak / Belum 😜</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: THANK YOU VIEW (Initially Hidden) -->
+        <section id="thankyou-view" class="card-screen hidden">
+            <div class="success-heart-header">
+                <div class="big-beating-heart">💖</div>
+            </div>
+
+            <div class="thankyou-content">
+                <h1 class="thankyou-title">Terima Kasih Banyak, Sayang! 🥰✨</h1>
+                <p class="thankyou-subtitle">
+                    Makasih ya udah mau maafin aku! Senyum kamu itu hal terindah buat aku. Janji deh aku bakal jadi pasangan yang lebih baik lagi dan bikin kamu bahagia tiap hari! 🌹
+                </p>
+
+                <!-- Animated Love Letter Box -->
+                <div class="love-letter-card">
+                    <div class="letter-stamp">💌</div>
+                    <h2 class="letter-header">Janji Manisku Buat Kamu:</h2>
+                    <ul class="letter-list">
+                        <li>💖 Selalu dengerin cerita kamu kapan aja</li>
+                        <li>🌸 Nggak bakal bikin kamu sedih lagi</li>
+                        <li>🍦 Siap nemenin kamu jajan kapan pun</li>
+                        <li>✨ Sayang sama kamu selamanya!</li>
+                    </ul>
+                </div>
+
+                <!-- Heart Photo Grid Showcase -->
+                <h3 class="gallery-title">Momen Indah Bersamamu 📸✨</h3>
+                <div class="photo-grid">
+                    <div class="grid-card"><img id="grid-img-1" src="image/photo1.jpg" alt="Memory 1"></div>
+                    <div class="grid-card"><img id="grid-img-2" src="image/photo2.jpg" alt="Memory 2"></div>
+                    <div class="grid-card"><img id="grid-img-3" src="image/photo3.jpg" alt="Memory 3"></div>
+                    <div class="grid-card"><img id="grid-img-4" src="image/photo4.jpg" alt="Memory 4"></div>
+                </div>
+
+                <div class="love-footer">
+                    <p class="footer-text">I Love You So Much! ❤️</p>
+                    <button id="btn-replay" class="btn btn-outline">
+                        <span>Lihat Pesan Lagi 🔄</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="images_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

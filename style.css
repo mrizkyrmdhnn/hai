@@ -1,0 +1,528 @@
+/* ==========================================================
+   ROMANTIC APOLOGY MOBILE WEB - DESIGN SYSTEM & STYLES
+   ========================================================== */
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #1a0814 0%, #2d0b22 40%, #4a102f 75%, #180512 100%);
+    --card-bg: rgba(255, 240, 245, 0.12);
+    --card-border: rgba(255, 182, 193, 0.25);
+    --primary-color: #ff3366;
+    --primary-gradient: linear-gradient(135deg, #ff3366 0%, #ff5e62 50%, #ff99ac 100%);
+    --secondary-color: #ff758c;
+    --accent-gold: #ffe600;
+    --text-white: #ffffff;
+    --text-pink: #ffc2d1;
+    --text-sub: #f8bbd0;
+    --shadow-glow: 0 0 25px rgba(255, 51, 102, 0.5);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --font-main: 'Poppins', sans-serif;
+    --font-hand: 'Dancing Script', cursive;
+    --font-title: 'Sacramento', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-main);
+    background: var(--bg-gradient);
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background Canvas */
+#bg-canvas, #confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+#bg-canvas {
+    z-index: 1;
+}
+
+#confetti-canvas {
+    z-index: 99;
+}
+
+/* Music Control Floating Button */
+.music-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.music-btn:active {
+    transform: scale(0.9);
+}
+
+.music-btn.playing {
+    animation: music-spin 4s linear infinite;
+    background: rgba(255, 51, 102, 0.4);
+    border-color: #ff3366;
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.6);
+}
+
+@keyframes music-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mobile Container Card */
+.mobile-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 440px;
+    min-height: 90vh;
+    margin: 16px;
+    padding: 24px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Screen Transitions */
+.card-screen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card-screen.hidden {
+    display: none !important;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.card-screen.active {
+    display: flex;
+    animation: fadeIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header Badge */
+.header-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255, 51, 102, 0.2);
+    border: 1px solid rgba(255, 153, 172, 0.4);
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-pink);
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(255, 51, 102, 0.15);
+}
+
+.sparkle {
+    display: inline-block;
+    animation: sparkle-bounce 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle-bounce {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.3) rotate(15deg); }
+}
+
+/* ==========================================================
+   HEART PHOTO FRAME STYLES
+   ========================================================== */
+
+.heart-frame-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 10px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Glowing Pulsing Aura behind the Heart */
+.heart-pulse-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 210px;
+    height: 210px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 51, 102, 0.6) 0%, rgba(255, 117, 140, 0.2) 60%, transparent 80%);
+    border-radius: 50%;
+    filter: blur(12px);
+    animation: heart-aura-pulse 2s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes heart-aura-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+/* Heart Frame SVG Wrapper */
+.heart-frame {
+    position: relative;
+    width: 190px;
+    height: 190px;
+    z-index: 2;
+    filter: drop-shadow(0 8px 20px rgba(255, 51, 102, 0.5));
+}
+
+/* SVG definition helper (hidden) */
+.heart-clip-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+/* Heart Photo Slideshow Container */
+.heart-photo-slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    clip-path: url(#heart-clip);
+    -webkit-clip-path: url(#heart-clip);
+    background: #2d0b22;
+    overflow: hidden;
+}
+
+.heart-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.heart-photo.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Decorative Heart Border Glow Overlay */
+.heart-border-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Photo Navigation Dots */
+.photo-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    z-index: 3;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 22px;
+    border-radius: 10px;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Message Box */
+.message-box {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.main-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 10px rgba(255, 51, 102, 0.4);
+    line-height: 1.3;
+}
+
+.apology-text {
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: var(--text-pink);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.apology-subtext {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ff99ac;
+}
+
+/* ==========================================================
+   BUTTON AREA & RUNAWAY BUTTON LOGIC
+   ========================================================== */
+
+.button-area {
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.btn {
+    position: relative;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Primary "Dimaafkan" Button */
+.btn-primary {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    box-shadow: 0 8px 25px rgba(255, 51, 102, 0.5);
+    animation: btn-pulse 1.8s infinite;
+    z-index: 5;
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+}
+
+@keyframes btn-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 51, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+}
+
+/* Secondary Evasive "Nggak / Belum" Button */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffd1dc;
+    backdrop-filter: blur(5px);
+    z-index: 4;
+    transition: left 0.25s ease-out, top 0.25s ease-out, transform 0.15s ease-out;
+}
+
+.btn-secondary.evading {
+    position: fixed !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 51, 102, 0.25);
+    border-color: rgba(255, 100, 130, 0.6);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================
+   THANK YOU VIEW & GALLERY STYLES
+   ========================================================== */
+
+.success-heart-header {
+    margin: 10px 0 15px 0;
+}
+
+.big-beating-heart {
+    font-size: 4rem;
+    animation: big-heart-beat 1.2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 51, 102, 0.8));
+}
+
+@keyframes big-heart-beat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.18); }
+}
+
+.thankyou-content {
+    text-align: center;
+    width: 100%;
+}
+
+.thankyou-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 12px rgba(255, 51, 102, 0.6);
+}
+
+.thankyou-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-pink);
+    margin-bottom: 20px;
+}
+
+/* Animated Love Letter Card */
+.love-letter-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px dashed rgba(255, 182, 193, 0.4);
+    border-radius: var(--radius-md);
+    padding: 20px 16px;
+    margin-bottom: 24px;
+    text-align: left;
+    backdrop-filter: blur(10px);
+}
+
+.letter-stamp {
+    position: absolute;
+    top: -12px;
+    right: 16px;
+    font-size: 1.6rem;
+}
+
+.letter-header {
+    font-family: var(--font-hand);
+    font-size: 1.4rem;
+    color: #ff99ac;
+    margin-bottom: 12px;
+}
+
+.letter-list {
+    list-style: none;
+    padding: 0;
+}
+
+.letter-list li {
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Photo Grid Showcase */
+.gallery-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-pink);
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.grid-card {
+    width: 100%;
+    height: 130px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.grid-card:hover {
+    transform: scale(1.04);
+}
+
+.grid-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Footer */
+.love-footer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-text {
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    color: #ff6699;
+}
